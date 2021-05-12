@@ -24,6 +24,7 @@ class Nation(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False, verbose_name="State name")
     abbr = models.CharField(max_length=5, null=False, blank=False, unique=True, verbose_name="State abbreviation")
     flag = models.ImageField(upload_to=flag_path, blank=True, null=True, verbose_name="Flag")
+    # flag = models.ImageField(upload_to='nation/flags/%Y/%m/%d/', blank=True, null=True, verbose_name="Flag")
     form_of_state = models.CharField(max_length=15, choices=FormOfState.choices,
                                      default=FormOfState.REPUBLIC)
 
@@ -58,6 +59,8 @@ class Inventor(models.Model):
     biography = models.TextField(blank=True, null=True, verbose_name="Biography")
     photo = models.ImageField(upload_to=inventor_photo_path, blank=True, null=True,
                               verbose_name="Photo of the inventor")
+    '''photo = models.ImageField(upload_to='inventor/photo/%Y/%m/%d/', blank=True, null=True,
+                              verbose_name="Photo of the inventor")'''
 
     class Meta:
         ordering = ["last_name", "first_name"]
@@ -76,6 +79,8 @@ class Invention(models.Model):
     category = models.ManyToManyField(Category, help_text="Select invention categories")
     photo = models.ImageField(upload_to=invention_photo_path, blank=True, null=True,
                               verbose_name="Photo of the invention")
+    '''photo = models.ImageField(upload_to='invention/photo/%Y/%m/%d/', blank=True, null=True,
+                              verbose_name="Photo of the invention")'''
 
     class Meta:
         ordering = ["name"]
